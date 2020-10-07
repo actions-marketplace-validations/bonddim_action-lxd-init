@@ -1,0 +1,24 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - ubuntu-20.04
+          - ubuntu-16.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run ${{ github.repository }}@${{ github.sha }}
+        uses: ./
+
+      - name: Show lxc info
+        run: lxc info
