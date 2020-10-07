@@ -1,0 +1,19 @@
+name: LXD init
+author: Dmytro Bondar
+description: LXD initialization on GitHub Linux runners
+branding:
+  icon: package
+  color: gray-dark
+
+runs:
+  using: composite
+  steps:
+    - name: Check platform
+      run: if [[ "${{ runner.os }}" != "Linux" ]]; then echo "::error::Unsupported platform - ${{ runner.os }}"; exit 1; fi
+      shell: bash
+
+    - name: Initialize LXD
+      run: |
+        sudo chmod o+g $([ ${ImageOS#ubuntu} -ge 20 ] && echo '/var/snap/lxd/common/lxd/unix.socket' || echo '/var/lib/lxd/unix.socket' )
+        lxd init --auto
+      shell: bash
