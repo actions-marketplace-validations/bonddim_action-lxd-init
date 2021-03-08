@@ -1,6 +1,6 @@
-name: LXD init
+name: lxd-init
 author: Dmytro Bondar
-description: LXD initialization on GitHub Linux runners
+description: Simple LXD initialization on GitHub Linux runners
 branding:
   icon: package
   color: gray-dark
