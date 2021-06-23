@@ -1,6 +1,8 @@
 name: Test
 
 on:
+  schedule:
+    - cron: '0 4 * * 6'
   push:
   pull_request:
 
@@ -10,9 +12,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-latest
           - ubuntu-20.04
-          - ubuntu-16.04
+          - ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
